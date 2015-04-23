@@ -61,3 +61,13 @@ salsaClasses = {
 ```
 
 Note that this script looks just at the path, so things like the domain name and querystring (anything after the question mark) it ignores. If you need to set behaviors based on the querystring, I recommend using SalsaScript directly.
+
+## Caveats
+
+This works pretty well for most cases, but actions are an exciting beast. Cosm actually loads most of the information about an action via AJAX, so the details that identify what sort of action the page is aren't actually present in the markup when the page is first loaded. Ironically, it's actually *easier* to identify the action type by looking at the AJAX response than it is to wait until the AJAX call is completed and inspect the DOM; this is because multi-targeted and regular single targeted actions are indistinguishable on the first page once the AJAX is done.
+
+This script is agnostic about the approach: If it thinks the AJAX request is already completed, it'll try inspecting the DOM to determine the action type the best it can. If it looks like the AJAX hasn't finished, it'll try "listening in" to the response and use that to set the class. 
+
+If for some reason you really need to be able to differentiate between targeted and multi-targeted actions, you may need to put the `<script>` tag for this someplace other than the footer; I've had good luck with it being the first child element of the `<body>`; however, since it's wrapped in a `jQuery.ready()` trigger that may not be sufficient for your needs. 
+
+Definitely *don't* include this script in your template's `<head>` as then it will load before Salsa injects jQuery onto the page, which will cause errors. Unless, of course, you're loading your own copy of jQuery in the head as well — in which case just make sure this comes after jQuery, as you would with any plugins.
