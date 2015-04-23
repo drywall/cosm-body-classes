@@ -1,6 +1,6 @@
 # Salsa Cosm Body Classer
 
-Pages rendered by Salsa Labs' venerable platform, now known as Cosm, often need significant styling for particular clients. While traditional templates offered by the platform allow for significant customization, often styling needs to be present that targets a particular page type: just action alerts, or just donation forms, for example.
+Pages rendered by [Salsa Labs'](https://www.salsalabs.com) venerable platform, now known as Cosm, often need significant styling for particular clients. While traditional templates offered by the platform allow for significant customization, often styling needs to be present that targets a particular page type: just action alerts, or just donation forms, for example.
 
 Targeting elements that live on just these pages can be difficult, but adding a CSS class to the <body> element can make it much easier. The challenge? Figuring out the page type in order to insert the proper body class.
 
@@ -13,7 +13,7 @@ Cosm Body Classer requires jQuery in order to work; thankfully, Salsa loads jQue
 I'd recommend uploading this script to your Salsa instance and then putting a reference to it in your template just before the closing `</body>` tag:
 
 ```html
-<script src="/path/to/cosm-body-classes.js"></script>
+<script src="/path/to/cosm-body-classes.min.js"></script>
 ```
 
 Even better: reduce the number of HTTP connections in your template by inlining the code or at least appending it to some other JS file the template's already loading.
